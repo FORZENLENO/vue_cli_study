@@ -1,5 +1,7 @@
 <template>
     <div id="bg">
+        <img alt="Vue logo" src="../assets/logo.png">
+        <hr>
         超大背景板！
         <router-view id="rv"></router-view>
         <button id="tt" @click="tt()">切换</button>
