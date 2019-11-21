@@ -5,21 +5,34 @@
         超大背景板！
         <router-view id="rv"></router-view>
         <button id="tt" @click="tt()">切换</button>
+        <div class="fa">
+            <son psMsg="父亲发送的内容：叫爸爸" @transfer="getUser"></son>
+            <p>{{msg}}</p>
+            <p>父组件接手到的内容：{{username}}</p>
+        </div>
     </div>
 </template>
 
 <script lang=''>
+
+ import son from './son'
+
     export default {
         name: 'mainView',
+        components: {
+            son
+        },
         data:()=>{
             return{
-                val:true,
+                val:false,
+                msg:'父组件',
+                username:'',
             }
         },
         methods:{
             tt(){
                 if(this.val==true){
-                    this.$router.push('/');
+                    this.$router.push('/a');
                     window.console.log(this.val)
                     return this.val=!this.val;
                     
@@ -29,6 +42,9 @@
                     return this.val=!this.val;
                      
                 }
+            },
+            getUser(msg){
+              this.username=msg  
             }
         }
     } 
@@ -49,5 +65,11 @@
     }
     #tt{
         margin-top: 50px;
+        margin-bottom: 20px;
+    }
+    .fa{
+        border: 1px red solid;
+        width: 550px;
+        margin: 0 auto
     }
 </style>
