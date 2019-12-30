@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id='app'>
+        <mycom :push="msg"></mycom>
+    </div>
+    
+    <script>
+        Vue.component('mycom',{
+            template:`<p>{{push  }}</p>`,
+            data:()=>{
+                return{}
+            },
+            props:['push'],
+            methods:{}
+        })
+
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'GOGOGO!'
+            },
+            methods:{
+                push(val){
+                    this.msg=val;
+                }
+            },
+        })
+    </script>
+</body>
+</html>

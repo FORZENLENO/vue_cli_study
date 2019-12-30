@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id='app'>
+        <mycom></mycon>
+    </div>
+    <div id='vmA'>
+        <p @click="chg">{{sharedState}}</p>
+    </div>
+    <div id='vmB'>
+        <p @click="chg">{{sharedState}}</p>
+    </div>
+    
+    <template id='mytem'>
+        <div>
+            <p>helloworld</p>
+            <img src="../hello-world/public/favicon.ico" alt="">
+        </div>
+    </template>
+
+    <script>
+        var store = {
+            debug: true,
+            state: {
+                message: 'Hello!'
+            },
+            setMessageAction (newValue) {
+                if (this.debug) console.log('setMessageAction triggered with', newValue)
+                this.state.message = newValue
+            },
+            clearMessageAction () {
+                if (this.debug) console.log('clearMessageAction triggered')
+                this.state.message = ''
+            }
+        }
+
+        Vue.component('mycom',{
+            template:'#mytem'
+        })
+
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                img:'../hello-world/public/favicon.ico'
+            },
+            methods:{
+                
+            },
+        })
+        var vmA = new Vue({
+            el:'#vmA',
+            data(){
+                return {
+                    privateState: {},
+                    sharedState: store.state.message
+                }
+            },
+            methods:{
+              chg(){
+                window.store.setMessageAction ('no hello')
+              }  
+            }
+        })
+
+        var vmB = new Vue({
+            el:'#vmB',
+            data(){
+                return {
+                    privateState: {},
+                    sharedState: store.state.message
+                }
+            },
+            methods:{
+              chg(){
+                window.store.setMessageAction ('no hello')
+                console.log(window.store.state.message)
+                console.log(this.sharedState)
+              }  
+            }
+        })
+    </script>
+</body>
+</html>

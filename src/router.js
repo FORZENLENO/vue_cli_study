@@ -13,11 +13,7 @@ export default new Router({
             component:mainView,
             children:[
                 {
-<<<<<<< HEAD
                     path:'/a',
-=======
-                    path:'',
->>>>>>> 9ead2c5a67d0c6c239d23ed20666c9b55e1620dc
                     component:a,
                 },
                 {

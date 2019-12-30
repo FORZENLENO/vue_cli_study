@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id='app'>
+        <mycom></mycon>
+
+    </div>
+    
+    <template id='mytem'>
+        <div>
+            <p>helloworld</p>
+            <img src="../hello-world/public/favicon.ico" alt="">
+        </div>
+    </template>
+
+    <script>
+        Vue.component('mycom',{
+            template:'#mytem'
+        })
+
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                img:'../hello-world/public/favicon.ico'
+            },
+            methods:{},
+        })
+    </script>
+</body>
+</html>
